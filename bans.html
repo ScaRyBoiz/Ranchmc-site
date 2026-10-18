@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RanchMC Punishments</title>
+<meta name="description" content="Public list of bans and mutes on RanchMC, updated automatically.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{
+  --bg:#EEF4E6;--surface:#FFFFFF;--ink:#1E2A1C;--muted:#58694F;--line:#D3E1C8;
+  --leaf:#3B8A35;--pumpkin:#D9661A;--hay:#F2C744;--soil:#6E4B2C;--sky-top:#BFE3F2;
+  --bad:#B4372B;--bad-bg:#F8E1DD;--warn:#8A5A00;--warn-bg:#FBEFCF;--ok-bg:#E2EFDC;
+  --display:"Mochiy Pop One","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111A10;--surface:#19241A;--ink:#EEF3E7;--muted:#A6B79C;--line:#2C3B2A;
+  --leaf:#7CC66F;--pumpkin:#F2954A;--hay:#F4D162;--soil:#4A3320;--sky-top:#14243A;
+  --bad:#FF8A7A;--bad-bg:#3A1D19;--warn:#F4C960;--warn-bg:#3A2E12;--ok-bg:#1F3320;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111A10;--surface:#19241A;--ink:#EEF3E7;--muted:#A6B79C;--line:#2C3B2A;
+  --leaf:#7CC66F;--pumpkin:#F2954A;--hay:#F4D162;--soil:#4A3320;--sky-top:#14243A;
+  --bad:#FF8A7A;--bad-bg:#3A1D19;--warn:#F4C960;--warn-bg:#3A2E12;--ok-bg:#1F3320;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;font-size:1rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pumpkin);outline-offset:3px;border-radius:6px}
+.wrap{max-width:980px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav{background:var(--sky-top)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:12px}
+.nav a{font-weight:800;text-decoration:none}
+.nav .brand{font-family:var(--display);font-weight:400}
+header .wrap{padding-block:36px 18px;display:grid;gap:10px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,1.4rem + 2vw,2.6rem);margin:0;line-height:1.15}
+.sub{color:var(--muted);font-weight:600;max-width:60ch;margin:0}
+.updated{font-size:.88rem;color:var(--muted);font-weight:700}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding-block:8px 16px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font:inherit;font-weight:800;border:2px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs .n{font-variant-numeric:tabular-nums;opacity:.7;margin-left:4px}
+input[type=search]{font:inherit;font-weight:700;padding:9px 14px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);min-width:0;width:min(100%,260px)}
+.list{display:grid;gap:10px;padding-bottom:48px}
+.row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:4px 14px;align-items:center;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.head{width:40px;height:40px;border-radius:8px;background:var(--line);image-rendering:pixelated;grid-row:span 2}
+.who{font-weight:900;font-size:1.05rem;display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-width:0}
+.reason{color:var(--muted);font-weight:600;overflow-wrap:anywhere;grid-column:2}
+.meta{grid-column:3;grid-row:1 / span 2;text-align:right;font-size:.85rem;color:var(--muted);font-weight:700;display:grid;gap:2px;justify-items:end}
+.pill{font-size:.72rem;font-weight:900;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pill.ban{background:var(--bad-bg);color:var(--bad)}
+.pill.mute{background:var(--warn-bg);color:var(--warn)}
+.pill.done{background:var(--ok-bg);color:var(--leaf)}
+.empty{padding:28px;text-align:center;color:var(--muted);font-weight:700;border:2px dashed var(--line);border-radius:14px}
+.note{font-size:.88rem;color:var(--muted);font-weight:600;padding-bottom:40px}
+@media (max-width:560px){.row{grid-template-columns:40px minmax(0,1fr)}.meta{grid-column:1 / -1;grid-row:auto;text-align:left;justify-items:start;display:flex;flex-wrap:wrap;gap:4px 12px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="brand" href="index.html">RanchMC</a><span><a href="wiki.html">Wiki</a> &nbsp; <a href="index.html">Home</a></span></div></nav>
+<header><div class="wrap">
+  <h1>Punishments</h1>
+  <p class="sub">Every ban and mute on RanchMC, updated automatically. Think one is wrong? Open an appeal ticket in our Discord.</p>
+  <p class="updated" id="updated">Loading…</p>
+</div></header>
+<main class="wrap">
+  <div class="tools">
+    <div class="tabs" role="group" aria-label="Filter">
+      <button type="button" data-f="all" aria-pressed="true">All<span class="n" id="n-all"></span></button>
+      <button type="button" data-f="BAN" aria-pressed="false">Bans<span class="n" id="n-BAN"></span></button>
+      <button type="button" data-f="MUTE" aria-pressed="false">Mutes<span class="n" id="n-MUTE"></span></button>
+      <button type="button" data-f="active" aria-pressed="false">Active now<span class="n" id="n-active"></span></button>
+    </div>
+    <input type="search" id="q" placeholder="Search a player" aria-label="Search a player">
+  </div>
+  <div class="list" id="list"></div>
+  <p class="note">Warnings and kicks aren't listed. Punishments that staff overturned are removed from this page.</p>
+</main>
+<script>
+let DATA={updated:null,punishments:[]},filter='all',q='';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function ago(iso){const s=(Date.now()-new Date(iso))/1000;if(s<60)return'just now';const m=s/60;if(m<60)return Math.round(m)+' min ago';const h=m/60;if(h<24)return Math.round(h)+' h ago';const d=h/24;if(d<30)return Math.round(d)+' days ago';return new Date(iso).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}
+function left(iso){const s=(new Date(iso)-Date.now())/1000;if(s<=0)return null;const h=s/3600;if(h<1)return Math.ceil(s/60)+' min left';if(h<48)return Math.round(h)+' h left';return Math.round(h/24)+' days left'}
+function isActive(p){return p.active&&(!p.expires||new Date(p.expires)>Date.now())}
+function render(){
+  const all=DATA.punishments;
+  const c={all:all.length,BAN:all.filter(p=>p.type==='BAN').length,MUTE:all.filter(p=>p.type==='MUTE').length,active:all.filter(isActive).length};
+  for(const k in c){const el=document.getElementById('n-'+k);if(el)el.textContent=c[k]}
+  let rows=all.filter(p=>filter==='all'||(filter==='active'?isActive(p):p.type===filter));
+  if(q)rows=rows.filter(p=>p.player.toLowerCase().includes(q));
+  rows.sort((a,b)=>new Date(b.issued)-new Date(a.issued));
+  $('#list').innerHTML=rows.length?rows.map(p=>{
+    const act=isActive(p),kind=p.type==='BAN'?'ban':'mute',label=p.type==='BAN'?'Banned':'Muted';
+    const status=act?(p.expires?left(p.expires):'Permanent'):'Expired';
+    return `<div class="row"><img class="head" alt="" loading="lazy" src="https://mc-heads.net/avatar/${esc(p.uuid||p.player)}/40" onerror="this.style.visibility='hidden'">
+      <div class="who">${esc(p.player)} <span class="pill ${act?kind:'done'}">${act?label:'Ended'}</span></div>
+      <div class="reason">${esc(p.reason)}</div>
+      <div class="meta"><span>${esc(status)}</span><span>${esc(ago(p.issued))}</span>${p.staff?`<span>by ${esc(p.staff)}</span>`:''}</div></div>`}).join('')
+    :`<div class="empty">${q?'No punishments for that name.':'Nothing to show here.'}</div>`;
+  $('#updated').textContent=DATA.updated?('Updated '+ago(DATA.updated)+(DATA.example?' · example data':'')):'Not updated yet';
+}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()}));
+$('#q').addEventListener('input',e=>{q=e.target.value.trim().toLowerCase();render()});
+function load(){fetch('bans.json?t='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{DATA=d;render()}).catch(()=>{if(!DATA.updated)$('#updated').textContent='The list could not load. Try again in a minute.'})}
+load();setInterval(load,60000);setInterval(render,30000);
+</script>
+</body>
+</html>

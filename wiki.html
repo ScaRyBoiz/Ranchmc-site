@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RanchMC Wiki</title>
+<meta name="description" content="The RanchMC player guide: getting started, crops, factories, animals, pets, the Order Board, co-ops, money and commands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+/* Layout: a field guide. Sticky contents rail on the left, one readable column on the right. */
+:root{
+  --bg:#EEF4E6;--surface:#FFFFFF;--ink:#1E2A1C;--muted:#58694F;--line:#D3E1C8;
+  --leaf:#3B8A35;--pumpkin:#D9661A;--hay:#F2C744;--soil:#6E4B2C;--sky-top:#BFE3F2;
+  --display:"Mochiy Pop One","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111A10;--surface:#19241A;--ink:#EEF3E7;--muted:#A6B79C;--line:#2C3B2A;
+  --leaf:#7CC66F;--pumpkin:#F2954A;--hay:#F4D162;--soil:#4A3320;--sky-top:#14243A;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111A10;--surface:#19241A;--ink:#EEF3E7;--muted:#A6B79C;--line:#2C3B2A;
+  --leaf:#7CC66F;--pumpkin:#F2954A;--hay:#F4D162;--soil:#4A3320;--sky-top:#14243A;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;font-size:1.02rem}
+a{color:var(--leaf);font-weight:700}
+:focus-visible{outline:3px solid var(--pumpkin);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav{background:var(--sky-top)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:12px}
+.nav a{font-weight:800;text-decoration:none;color:var(--ink)}
+.nav .brand{font-family:var(--display);font-weight:400}
+.nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+header .wrap{padding-block:36px 8px;display:grid;gap:8px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.9rem,1.5rem + 2vw,2.7rem)}
+h2{font-size:clamp(1.4rem,1.2rem + 1vw,1.85rem);scroll-margin-top:16px}
+h3{font-size:1.15rem;margin-top:8px}
+.sub{color:var(--muted);font-weight:600;max-width:62ch;margin:0}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;padding-block:24px 64px}
+.toc{position:sticky;top:16px;align-self:start;display:grid;gap:2px}
+.toc a{display:block;padding:6px 10px;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:800;font-size:.95rem}
+.toc a:hover{background:var(--surface);color:var(--ink)}
+article{display:grid;gap:44px;min-width:0}
+section{display:grid;gap:12px;max-width:68ch}
+section p,section li{color:var(--ink)}
+ul.tight,ol.tight{margin:0;padding-left:1.25em;display:grid;gap:4px}
+.callout{background:var(--surface);border:2px solid var(--line);border-left:6px solid var(--hay);border-radius:12px;padding:12px 16px;font-weight:600}
+code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--line);padding:1px 6px;border-radius:6px;white-space:nowrap}
+.tbl{overflow-x:auto;border:2px solid var(--line);border-radius:12px;background:var(--surface);max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:900;color:var(--muted);font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;text-align:right}
+.money{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.money div{background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:4px;min-width:0}
+.money strong{font-family:var(--display);font-weight:400;font-size:1.15rem}
+.money span{color:var(--muted);font-weight:600;font-size:.93rem}
+footer{border-top:2px dashed var(--line)}
+footer .wrap{padding-block:24px;color:var(--muted);font-size:.88rem;font-weight:600}
+@media (max-width:820px){.layout{grid-template-columns:1fr}.toc{position:static;display:flex;flex-wrap:wrap;gap:4px}.toc a{background:var(--surface);border:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="brand" href="index.html">RanchMC</a>
+<ul><li><a href="index.html#join">Join</a></li><li><a href="bans.html">Punishments</a></li></ul></div></nav>
+<header><div class="wrap">
+  <h1>RanchMC Wiki</h1>
+  <p class="sub">Everything you need to go from a patch of dirt to a full ranch. New here? Start with Getting started.</p>
+</div></header>
+<div class="wrap layout">
+<nav class="toc" aria-label="Contents">
+  <a href="#start">Getting started</a>
+  <a href="#money">Money</a>
+  <a href="#farm">Your farm</a>
+  <a href="#crops">Crops</a>
+  <a href="#factories">Factories</a>
+  <a href="#animals">Animals</a>
+  <a href="#pets">Pets</a>
+  <a href="#orders">Order Board</a>
+  <a href="#coop">Co-ops</a>
+  <a href="#trading">Trading</a>
+  <a href="#cosmetics">Cosmetics</a>
+  <a href="#commands">Commands</a>
+</nav>
+<article>
+
+<section id="start">
+  <h2>Getting started</h2>
+  <ol class="tight">
+    <li>Join at <code>play.ranchmc.farm</code> and accept the resource pack. Custom crops and items need it.</li>
+    <li>Claim your farm. It's your own protected plot where nobody else can build or harvest.</li>
+    <li>Buy seeds from the Seeds shop and plant your first wheat.</li>
+    <li>Harvest, sell your crops, and use the money to buy better seeds.</li>
+    <li>Level up your farming to unlock new crops, factories and bigger farms.</li>
+  </ol>
+  <p class="callout">Crops keep growing while you're offline, at a slightly slower rate, for up to 7 days.</p>
+</section>
+
+<section id="money">
+  <h2>Money</h2>
+  <p>RanchMC has three currencies, and each one does a different job.</p>
+  <div class="money">
+    <div><strong>Coins</strong><span>Everyday money. Earned by selling crops and goods, spent on seeds and supplies.</span></div>
+    <div><strong>Tokens</strong><span>Progress money. Spent on farm expansions and buildings.</span></div>
+    <div><strong>Gems</strong><span>Cosmetics money. Spent in the <code>/gemstore</code> on hats, backpacks, particles, tags and disguises.</span></div>
+  </div>
+</section>
+
+<section id="farm">
+  <h2>Your farm</h2>
+  <p>Your farm is protected. Visitors can look around, but they can't break blocks, harvest, or open your chests unless you allow it in your farm settings.</p>
+  <ul class="tight">
+    <li><b>Expanding:</b> spend Tokens to make your farm bigger. Each expansion also raises how many crops you can plant.</li>
+    <li><b>Crop limit:</b> every farm starts with room for 1,000 crops, and each expansion adds 100 more.</li>
+    <li><b>Visitors:</b> set your farm home and visit spot so friends can find you. You can kick or ban anyone from your farm.</li>
+  </ul>
+</section>
+
+<section id="crops">
+  <h2>Crops</h2>
+  <p>Each crop unlocks at a farming level. Crops marked "regrows" can be harvested several times before you need to replant.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Crop</th><th>Unlocks at</th><th>Grow time</th><th>Harvests</th></tr></thead>
+    <tbody id="crop-rows"></tbody>
+  </table></div>
+</section>
+
+<section id="factories">
+  <h2>Factories</h2>
+  <p>Factories turn raw crops into goods that sell for much more. Put ingredients in, start the craft, and collect the output when it's done. You can stack ingredients to run several batches in a row.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Factory</th><th>Makes</th></tr></thead>
+    <tbody>
+      <tr><td>Oven</td><td>Bread, pies, cookies, cheesecakes, soup</td></tr>
+      <tr><td>Jam Maker</td><td>Berry and pumpkin jams</td></tr>
+      <tr><td>Juice Press</td><td>Fruit and vegetable juices</td></tr>
+      <tr><td>Dairy</td><td>Dairy goods from milk</td></tr>
+      <tr><td>Loom</td><td>Cloth from cotton and wool</td></tr>
+      <tr><td>Smokehouse</td><td>Smoked meats like Fresh Bacon</td></tr>
+      <tr><td>Feed Mill</td><td>Chicken, Cow, Pig and Sheep Feed</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="animals">
+  <h2>Animals</h2>
+  <p>Build coops for chickens, cows, sheep and pigs. Make feed in the Feed Mill, put it in the coop's feed tray, and collect eggs, milk, wool and meat to sell or use in your factories.</p>
+</section>
+
+<section id="pets">
+  <h2>Pets</h2>
+  <p>Pets follow you around and give your farm a bonus. Level them up to make the bonus stronger.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Pet</th><th>Bonus</th></tr></thead>
+    <tbody>
+      <tr><td>Chicken</td><td>More farming XP from harvests</td></tr>
+      <tr><td>Sheep</td><td>Extra crops from harvests and more wool</td></tr>
+      <tr><td>Pig</td><td>Higher sell prices</td></tr>
+      <tr><td>Cow</td><td>Extra factory output and more milk</td></tr>
+      <tr><td>Horse</td><td>Faster crop growth</td></tr>
+    </tbody>
+  </table></div>
+  <p>Use <code>/pet summon &lt;type&gt;</code> to bring one out and <code>/pet dismiss</code> to put it away.</p>
+</section>
+
+<section id="orders">
+  <h2>Order Board</h2>
+  <p>The Order Board gives you three orders at a time for specific crops and goods. Fill one to earn bonus coins and XP, and a new order takes its place. Higher farming levels get bigger orders for better goods.</p>
+</section>
+
+<section id="coop">
+  <h2>Co-ops</h2>
+  <p>Invite friends to farm with you. Co-op members can work your farm, and you can promote trusted members to Moderator.</p>
+  <ul class="tight">
+    <li><b>Members</b> can farm, harvest and use your buildings.</li>
+    <li><b>Moderators</b> can also kick and ban visitors, set the farm home, and pay for expansions with their own Tokens.</li>
+  </ul>
+</section>
+
+<section id="trading">
+  <h2>Trading</h2>
+  <ul class="tight">
+    <li><b>Shop signs:</b> put a sign on a chest to sell items to other players while you're offline. Use <code>/farmshop</code>. Everyone gets 5 signs, and ranks get more.</li>
+    <li><b>Player market:</b> list items for other players with <code>/playermarket</code>.</li>
+    <li><b>Direct trades:</b> trade safely with another player using <code>/trade</code>.</li>
+  </ul>
+  <p class="callout">Shop sign sales have a small tax, so set your prices with that in mind.</p>
+</section>
+
+<section id="cosmetics">
+  <h2>Cosmetics</h2>
+  <p>Hats, backpacks, hand items, particles, tags and mob disguises are all in the <code>/gemstore</code>. Right-click any particle in the store to try it on for 15 seconds before you buy. Equip what you own from your cosmetics menu.</p>
+</section>
+
+<section id="commands">
+  <h2>Commands</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><code>/farm</code></td><td>Your farm: home, expand, visitors, settings</td></tr>
+      <tr><td><code>/gemstore</code></td><td>Cosmetics shop</td></tr>
+      <tr><td><code>/farmshop</code></td><td>Create and manage shop signs</td></tr>
+      <tr><td><code>/playermarket</code></td><td>Buy and sell with other players</td></tr>
+      <tr><td><code>/trade &lt;player&gt;</code></td><td>Trade directly with someone</td></tr>
+      <tr><td><code>/pet</code></td><td>Summon or dismiss your pet</td></tr>
+      <tr><td><code>/orders</code></td><td>Open your Order Board from anywhere (ranks)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</article>
+</div>
+<footer><div class="wrap">Something missing or out of date? Tell us in the Discord. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</div></footer>
+<script>
+const CROPS=[["Wheat",1,"2 min",1],["Corn",2,"3 min",1],["Potato",3,"5 min",1],["Soybean",4,"7 min",1],["Sugarcane",7,"15 min",0],["Carrot",9,"8 min",1],["Pumpkin",15,"30 min",1],["Cotton",19,"45 min",1],["Raspberry",24,"45 min",4],["Blueberry",50,"55 min",4],["Strawberry",56,"75 min",4],["Cranberry",61,"90 min",4],["Elderberry",66,"100 min",4],["Tomato",72,"50 min",1],["Garlic",77,"60 min",1]];
+document.getElementById('crop-rows').innerHTML=CROPS.map(([n,l,t,h])=>`<tr><td>${n}</td><td class="num">Level ${l}</td><td>${t}</td><td>${h===0?'Regrows forever':h===1?'Once':h+' times'}</td></tr>`).join('');
+</script>
+</body>
+</html>
