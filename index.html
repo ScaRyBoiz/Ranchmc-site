@@ -141,6 +141,13 @@ section.block .wrap{padding-block:clamp(48px,8vw,88px);display:grid;gap:28px}
 footer{border-top:2px dashed var(--line)}
 footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;color:var(--muted);font-size:var(--step--1);font-weight:600}
 
+/* Vote list */
+.votes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.votes a{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:var(--surface);border:2px solid var(--line);text-decoration:none;min-width:0}
+.votes a:hover{border-color:var(--leaf)}
+.votes .n{font-family:var(--display);color:var(--pumpkin);font-size:1.3rem;width:1.4em;text-align:center;font-variant-numeric:tabular-nums}
+.votes .site{font-weight:900;flex:1;min-width:0}
+.votes .go{font-weight:900;font-size:var(--step--1);background:var(--leaf);color:#fff;padding:5px 12px;border-radius:999px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:800;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
 </style>
@@ -167,6 +174,7 @@ footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:12px 24px;justif
       <li><a href="#join">Join</a></li>
       <li class="opt"><a href="#ranch">The ranch</a></li>
       <li class="opt"><a href="#crops">Crops</a></li>
+      <li><a href="#vote">Vote</a></li>
       <li><a href="wiki.html">Wiki</a></li>
       <li class="opt"><a href="bans.html">Punishments</a></li>
       <li><a href="https://shop.ranchmc.farm" target="_blank" rel="noopener">Store</a></li>
@@ -250,6 +258,21 @@ footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:12px 24px;justif
         <ol><li>Open Servers and scroll to Add Server.</li><li>Enter the address and port.</li><li>Works on phone, console, tablet and Windows.</li></ol>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="block" id="vote">
+  <div class="wrap">
+    <h2>Vote for RanchMC</h2>
+    <p class="intro">Voting helps new players find us, and every vote gets you rewards in game, including Vote Crate keys. You can vote on each site once a day.</p>
+    <ol class="votes">
+        <li><a href="https://minecraft-mp.com/server-s356093" target="_blank" rel="noopener"><span class="n">1</span><span class="site">Minecraft MP</span><span class="go">Vote</span></a></li>
+        <li><a href="https://www.planetminecraft.com/server/ranchmc-the-ultimate-farming-experience/" target="_blank" rel="noopener"><span class="n">2</span><span class="site">Planet Minecraft</span><span class="go">Vote</span></a></li>
+        <li><a href="https://minecraftservers.org/server/685563" target="_blank" rel="noopener"><span class="n">3</span><span class="site">Minecraft Servers</span><span class="go">Vote</span></a></li>
+        <li><a href="https://mc-servers.com/server/7072" target="_blank" rel="noopener"><span class="n">4</span><span class="site">MC-Servers</span><span class="go">Vote</span></a></li>
+        <li><a href="https://minecraft.buzz/server/19976" target="_blank" rel="noopener"><span class="n">5</span><span class="site">Minecraft Buzz</span><span class="go">Vote</span></a></li>
+        <li><a href="https://minecraft-server-list.com/server/518911/" target="_blank" rel="noopener"><span class="n">6</span><span class="site">Minecraft Server List</span><span class="go">Vote</span></a></li>
+    </ol>
   </div>
 </section>
 
